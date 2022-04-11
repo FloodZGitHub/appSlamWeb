@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap');
+
+:root{
+  --primary-soft: hsl(215, 51%, 70%);
+  --primary-cyan: hsl(178, 100%, 50%);
+  --neutral-mainBG: hsl(217, 54%, 11%);
+  --neutral-cardBG: hsl(216, 50%, 16%);
+  --neutral-line: hsl(215, 32%, 27%);
+  --color-shadow: rgba(255, 243, 249, 0.12)
+}
+
+* {
+ margin: 0;
+ padding: 0;
+ box-sizing: border-box;
+}
+
+body{
+  font-family: 'Outfit';
+  background-color:var(--neutral-mainBG);
+}
+.nft{
+  width:100%;
+  border-radius:25px
+}
+
+h2{
+  color: #ffff;
+  margin: 10px 0;
+}
+
+p{
+  font-width:300px;
+  color:var(--primary-soft);
+  margin:0 0 10px 0;
+}
+
+a{
+  color: white;
+}
+
+.card{
+  width:400px;
+  height:500px;
+  justify-content:center;
+  background-color:var(--neutral-cardBG);
+  box-shadow:10px 5px 50px 15px var(--color-shadow);
+  border-radius: 20px;
+  margin:auto;
+  padding: 15px 20px;
+  
+}
+.container{
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+
+.info-nft{
+  display:flex;
+  padding: 10px 5px;
+  justify-content:space-between;
+}
+.price{
+  color: var(--primary-cyan);
+  display:flex;
+}
+.price > i{
+  margin: 0 5px 0 0;
+}
+.time-left{
+  color: var(--primary-soft)
+} 
+
+.container-creator-data{
+  display:flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+#line{
+  border-top: 1px solid var(--neutral-line);
+  display: block;
+  margin: 0 auto 10px 0;
+  width: 100%;
+  content: "";
+}
+
+.container-creator-data > i{
+  color: var(--primary-soft);
+  margin: 0 10px;
+}
+.container-creator-data > a{
+  color: inherit;
+}
+.profile{
+  border-radius:50%;
+  width:70px;
+}
+
+
+
+
+
+.attribution { 
+  font-size: 11px; 
+  text-align: center; 
+}
+.attribution a { 
+  color: hsl(228, 45%, 44%); 
+}
+

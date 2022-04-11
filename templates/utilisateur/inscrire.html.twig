@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{parent()}}inscription{% endblock %}
+
+{% block body %}
+    {% for message in app.flashes('notice') %}
+        <h2 class="alert alert-info text-center" role="alert">
+            {{ message }}
+        </h2>
+    {% endfor %}
+    <h1 class="text-center text-primary"> Slam : inscription</h1>
+
+    <h1 class="text-center text-primary mt-4 pt-4 display-1 fw-bold">Informations Personnelles</h1>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-6">
+                {{form_start(form)}}
+
+                    {{form_label(form.email, 'Votre Email :', {'label_attr':{'class':'fw-bold mt-4'}})}}
+                    {{form_widget(form.email, {'attr':{'class':'form-control mb-4 ', 'placeholder':'votre Email ...'}})}}
+
+                    {{form_label(form.password, 'votre mot de passe :', {'label_attr':{'class':'fw-bold mt-4'}})}}
+                    {{form_widget(form.password, {'attr':{'class':'form-control mb-4', 'placeholder':'votre mot de passe ...'}})}}
+
+                    <div class="text-center">
+                    {{form_widget(form.envoyer, {'label':"Soumettre le formulaire", 'attr':{'class':'btn btn-primary'}})}}
+                    </div>
+                {{form_end(form, {render_rest: true})}}
+                    
+                </div>
+            </div>
+        </div>
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Annonce{% endblock %}
+
+{% block body %}
+    <h1 class="text-center text-primary"> Ajouter Annonce</h1>
+
+    <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-6">
+                {{form_start(form)}}
+
+                    {{form_label(form.designation, 'Titre :', {'label_attr':{'class':'fw-bold mt-4'}})}}
+                    {{form_widget(form.designation, {'attr':{'class':'form-control mb-4 ', 'placeholder':'Titre...'}})}}
+
+                    {{form_label(form.description, 'Description article :', {'label_attr':{'class':'fw-bold mt-4'}})}}
+                    {{form_widget(form.description, {'attr':{'class':'form-control mb-4', 'placeholder':'Description...'}})}}
+
+                    {{form_label(form.prix, "Prix :", {'label_attr':{'class':'fw-bold mt-4'}})}}
+                    {{form_widget(form.prix, {'attr':{'class':'form-control mb-4', 'placeholder':"prix..."}})}}
+
+                    {{form_label(form.ville, "Ville :", {'label_attr':{'class':'fw-bold mt-4'}})}}
+                    {{form_widget(form.ville, {'attr':{'class':'form-control mb-4', 'placeholder':"Ville..."}})}}
+                    
+                    {{form_label(form.region, "Region :", {'label_attr':{'class':'fw-bold mt-4'}})}}
+                    {{form_widget(form.region, {'attr':{'class':'form-control mb-4', 'placeholder':"Region..."}})}}
+
+                    {{form_label(form.codepostal, "Code Postal :", {'label_attr':{'class':'fw-bold mt-4'}})}}
+                    {{form_widget(form.codepostal, {'attr':{'class':'form-control mb-4', 'placeholder':"Code Postal..."}})}}
+
+                    {{form_label(form.nom, "Votre Nom :", {'label_attr':{'class':'fw-bold mt-4'}})}}
+                    {{form_widget(form.nom, {'attr':{'class':'form-control mb-4', 'placeholder':"Votre Nom..."}})}}
+
+                    {{form_label(form.mail, "Votre Mail :", {'label_attr':{'class':'fw-bold mt-4'}})}}
+                    {{form_widget(form.mail, {'attr':{'class':'form-control mb-4', 'placeholder':"Votre Mail..."}})}}
+
+                    {{form_label(form.telephone, "Numéro de téléphone :", {'label_attr':{'class':'fw-bold mt-4'}})}}
+                    {{form_widget(form.telephone, {'attr':{'class':'form-control mb-4', 'placeholder':"téléphone..."}})}}
+
+                    {{form_label(form.type, "Type :", {'label_attr':{'class':'fw-bold mt-4'}})}}
+                    {{form_widget(form.type, {'attr':{'class':'form-control mb-4', 'placeholder':"Type..."}})}}
+
+                    {{form_label(form.fichier, "Photo 1 :", {'label_attr':{'class':'fw-bold mt-4'}})}}
+                    {{form_widget(form.fichier, {'attr':{'class':'form-control mb-4', 'placeholder':"Type..."}})}}
+
+                    {{form_label(form.fichier2, "Photo 2 :", {'label_attr':{'class':'fw-bold mt-4'}})}}
+                    {{form_widget(form.fichier2, {'attr':{'class':'form-control mb-4', 'placeholder':"Type..."}})}}
+
+                    {{form_label(form.fichier3, "Photo 3 :", {'label_attr':{'class':'fw-bold mt-4'}})}}
+                    {{form_widget(form.fichier3, {'attr':{'class':'form-control mb-4', 'placeholder':"Type..."}})}}
+
+
+                    <div class="text-center">
+                    {{form_widget(form.save, {'label':"Soumettre le formulaire", 'attr':{'class':'btn btn-primary'}})}}
+                    </div>
+                {{form_end(form, {render_rest: true})}}
+                    
+                </div>
+            </div>
+        </div>
+        </br>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{parent()}}Accueil{% endblock %}
+
+{% block body %}
+    {% if is_granted('IS_AUTHENTICATED_FULLY')%}
+        <h3 class="text-center text-primary">Bonjour {{app.user.email}}</h3>
+    {% endif %}
+    <h1 class="text-center text-primary"> Slam : Shop 4l Trophy</h1>
+{% endblock %}

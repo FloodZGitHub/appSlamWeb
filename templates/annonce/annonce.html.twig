@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{parent()}}Annonces{% endblock %}
+
+{% block stylesheets %}
+
+<!-- Bootstrap CSS -->
+<link href="https://bootswatch.com/5/yeti/bootstrap.min.css" rel="stylesheet"> 
+
+
+{% endblock %}
+
+{% block body %}
+    <h1 class="text-center text-primary"> Les annonces</h1>
+
+    
+  {% for annonce in annonces %}
+      <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="col">
+          <div class="card h-100">
+            {% for f in annonce.fichier %}
+              <img src='../uploads/fichiers/{{f.nom}}' class="card-img-top" alt="..." width="100px">
+            {% endfor %}
+            <div class="card-body">
+              <h4 class="card-title">{{annonce.designation |capitalize }}</h4>
+              <h6 class="card-title">{{annonce.prix |capitalize }} €</h6>
+              {% for t in annonce.type %}<h6 class="card-title">{{t.libelle |capitalize }}</h6>{% endfor %}
+              <p class="card-text">{{annonce.description }}</p>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted">{{annonce.datepost |date("d-m-y")}}</small>
+            </div>
+          </div>
+        </div>
+      </div>
+  {% endfor %}
+
+
+{% endblock %}
+{% block javascripts %}
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+{% endblock %}
