@@ -14,26 +14,31 @@
     <h1 class="text-center text-primary"> Les annonces</h1>
 
     
-  {% for annonce in annonces %}
+  
       <div class="row row-cols-1 row-cols-md-3 g-4">
+      {% for annonce in annonces %}
         <div class="col">
           <div class="card h-100">
-            {% for f in annonce.fichier %}
-              <img src='../uploads/fichiers/{{f.nom}}' class="card-img-top" alt="..." width="100px">
+            {% for f in annonce.fichier %}{% if loop.first %}
+              <img src='../uploads/fichiers/{{f.nom}}' class="card-img-top" width="10%" alt="..."  >
+              {% endif %}
             {% endfor %}
-            <div class="card-body">
-              <h4 class="card-title">{{annonce.designation |capitalize }}</h4>
-              <h6 class="card-title">{{annonce.prix |capitalize }} €</h6>
-              {% for t in annonce.type %}<h6 class="card-title">{{t.libelle |capitalize }}</h6>{% endfor %}
-              <p class="card-text">{{annonce.description }}</p>
-            </div>
+              <div class="card-body">
+                 <h5 class="card-title">{{annonce.designation}}</h5>
+                {% for t in annonce.type %}<p class="card-text">Type : {{t.libelle |capitalize }}</p>{% endfor %}
+                <p class="card-text">{{annonce.description }}</p>
+                <p class="card-text">{{annonce.prix}} €</p>
+                <p class="card-text"> {{annonce.region}}, {{annonce.ville}}, {{annonce.codepostal}} </p>
+                <a href="#" class="btn btn-primary " style="position: relative;bottom:2%">Go somewhere</a>
+              </div>
             <div class="card-footer">
               <small class="text-muted">{{annonce.datepost |date("d-m-y")}}</small>
             </div>
           </div>
         </div>
+        {% endfor %}
       </div>
-  {% endfor %}
+  
 
 
 {% endblock %}

@@ -15,6 +15,9 @@ use Symfony\Component\Security\Http\Authenticator\Passport\Credentials\PasswordC
 use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
 use Symfony\Component\Security\Http\Authenticator\Passport\PassportInterface;
 use Symfony\Component\Security\Http\Util\TargetPathTrait;
+use App\Entity\User;
+use App\Entity\Utilisateur;
+
 
 class ConnectAuthenticator extends AbstractLoginFormAuthenticator
 {
@@ -52,7 +55,12 @@ class ConnectAuthenticator extends AbstractLoginFormAuthenticator
 
         // For example:
         //return new RedirectResponse($this->urlGenerator->generate('some_route'));
-        return new RedirectResponse($this->urlGenerator->generate('base'));
+        //$utilisateur = $this->getUser()->getUtilisateur();
+        //if ($utilisateur == "") {
+            return new RedirectResponse($this->urlGenerator->generate('utilisateur'));
+        //}else{
+        //    return new RedirectResponse($this->urlGenerator->generate('base'));
+        //}
     }
 
     protected function getLoginUrl(Request $request): string

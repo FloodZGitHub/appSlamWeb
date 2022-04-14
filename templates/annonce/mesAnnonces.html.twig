@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{parent()}}Mes Annonces{% endblock %}
+
+{% block stylesheets %}
+
+<!-- Bootstrap CSS -->
+<link href="https://bootswatch.com/5/yeti/bootstrap.min.css" rel="stylesheet"> 
+
+
+{% endblock %}
+
+{% block body %}
+    <h1 class="text-center text-primary"> Mes annonces</h1>
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-8 p-4 m-0 text-primary">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">designation</th>
+                                    <th scope="col">description</th>
+                                    <th scope="col">prix</th>
+                                    <th scope="col">date</th>
+                                    <th scope="col"></th>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for annonce in annonces %}
+                                    <tr class="{{ cycle(['table-primary', 'table-secondary'], loop.index0) }}">
+                                        <td>{{annonce.designation |capitalize }}</td>
+                                        <td>{{annonce.description }}</td>
+                                        <td>{{annonce.prix}} €</td>
+                                        <td>{{annonce.datepost |date("d-m-y")}}</td>
+                                        <td>{{annonce.datepost |date("d-m-y")}}</td>
+                                        <td><a href="{{path('modifAnnonce',{'id':annonce.id})}}" class="text-white"><span class="material-icons" title="Modifier une annonce">modifier</span></a></td>
+                                        <td><a href="{{path('MesAnnonces',{'supp':annonce.id})}}" class="text-white"><span class="material-icons" title="Supprimer l'annonce">delete</span></a></td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+{% endblock %}
+{% block javascripts %}
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+{% endblock %}

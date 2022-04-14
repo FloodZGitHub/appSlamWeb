@@ -12,6 +12,7 @@ use App\Entity\User;
 use App\Entity\Utilisateur;
 use App\Entity\Type;
 use App\Form\AddAnnonceType;
+use App\Form\ModifAnnonceType;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
 class AnnonceController extends AbstractController
@@ -127,12 +128,53 @@ class AnnonceController extends AbstractController
         ]);
     }
 
-    #[Route('/affichage/{id}', name: 'affichage', requirements: ["id"=>"\d+"])]
-    public function telechargement(int $id): Response
+    #[Route('/user-MesAnnonces', name: 'MesAnnonces')]
+    public function mesAnnonces(Request $request): Response
     {
-        $fichier = $this->getDoctrine()->getRepository(Fichier::class)->find($id);
-        if ($fichier != null){
-            return $this->file($this->getParameter('file_directory').'/'.$fichier->getNom(), $fichier->getOriginal());
+        $em = $this->getDoctrine();
+        $annonce = $this->getUser()->getUtilisateur()->getAnnonces();
+        $repoAnnonce = $em->getRepository(Annonce::class);
+
+        if ($request->get('supp')!=null){
+            $annonce = $repoAnnonce->find($request->get('supp'));
+            if($annonce!=null){
+                $em->getManager()->remove($annonce);
+                $em->getManager()->flush();
+            }
+            return $this->redirectToRoute('MesAnnonces');
+            }
+
+        return $this->render('annonce/mesAnnonces.html.twig', [
+            'annonces'=>$annonce
+        ]);
+    }
+
+    #[Route('/modifAnnonce/{id}', name: 'modifAnnonce', requirements: ["id"=>"\d+"])]
+    public function modifAnnonce(int $id, Request $request): Response
+    {
+        $em = $this->getDoctrine();
+        $repoAnnonce = $em->getRepository(Annonce::class);
+        $annonce = $repoAnnonce->find($id);
+
+        if($annonce==null){
+            $this->addFlash('notice', "Ce thème n'existe pas");
+            return $this->redirectToRoute('MesAnnonces');
         }
+
+        $form = $this->createForm(ModifAnnonceType::class,$annonce);
+
+        if ($request->isMethod('POST')) {
+            $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($annonce);
+                $em->flush();
+                $this->addFlash('notice', 'Thème modifié');
+            }
+            return $this->redirectToRoute('MesAnnonces');
+        }
+        return $this->render('annonce/modifAnnonce.html.twig', [
+            'form'=>$form->createView()
+            ]);
     }
 }
