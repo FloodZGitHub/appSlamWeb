@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{parent()}}Boite d'envoi{% endblock %}
+
+{% block body %}
+    <h1 class="text-center text-primary">Boite d'envoi</h1>
+
+    <section class="container">
+        <div class="row">
+            <div class="col">
+                <h1>Messages envoyés</h1>
+            </div>
+        </div>
+    </section>
+
+    <!-- Liste des messages Envoyés-->
+    <section class="container">
+        <div class="row">
+            <div class="col">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Message</th>
+                            <th>Destinataire</th>
+                            <th>Date</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for message in messages |sort((a, b) => b.dateEnvoi <=> a.dateEnvoi)%}
+                            <tr>
+                                <td>{{message.contenu}}</td>
+                                <td>{{message.userrecoi.nom}} {{message.userrecoi.prenom}}</td>
+                                <td>{{message.dateenvoi|date('d/m/Y')}}</td>
+                                <td><a href="{{path('BoiteEnvoi',{'supp':message.id})}}" class="text-black"><span class="material-icons" title="Supprimer le message">Supprimer</span></a></td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+
+
+{% endblock %}

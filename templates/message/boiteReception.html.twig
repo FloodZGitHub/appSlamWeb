@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{parent()}}Boite de réception{% endblock %}
+
+{% block body %}
+    <h1 class="text-center text-primary">Boite de réception</h1>
+
+    <section class="container">
+        <div class="row">
+            <div class="col">
+                <h1>Messages reçus</h1>
+            </div>
+        </div>
+    </section>
+
+    <!-- Liste des messages reçus-->
+    <section class="container">
+        <div class="row">
+            <div class="col">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Message</th>
+                            <th>Expéditeur</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for message in messages |sort((a, b) => b.dateEnvoi <=> a.dateEnvoi)%}
+                            <tr>
+                                <td>{{message.contenu}}</td>
+                                <td>{{message.userenvoi.nom |upper}} {{message.userenvoi.prenom |capitalize}}</td>
+                                <td>{{message.dateenvoi|date('d/m/Y')}}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

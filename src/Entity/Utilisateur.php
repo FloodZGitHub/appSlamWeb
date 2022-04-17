@@ -49,6 +49,11 @@ class Utilisateur
         $this->messageenvoi = new ArrayCollection();
     }
 
+    public function __toString(){
+        return $this->getMessagerecu;
+        return $this->getMessageenvoi;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

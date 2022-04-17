@@ -1,7 +1,25 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{parent()}}Accueil{% endblock %}
+{% block title %}{{parent()}}Messages{% endblock %}
 
 {% block body %}
-    <h1 class="text-center text-primary"> Message</h1>
+    <h1 class="text-center text-primary">Messagerie</h1>
+
+    </br>
+
+    <!-- Boutons -->
+    <section class="container">
+        <div class="row">
+            <div class="col">
+                <a href="{{path('BoiteReception')}}" class="btn btn-primary btn-lg btn-block">Boite de réception</a>
+            </div>
+            <div class="col">
+                <a href="{{path('BoiteEnvoi')}}" class="btn btn-primary btn-lg btn-block">Boite d'envoi</a>
+            </div>
+                        <div class="col">
+                <a href="{{path('AjouterMessage')}}" class="btn btn-primary btn-lg btn-block">Nouveau message</a>
+            </div>
+        </div>
+    </section>
+
 {% endblock %}
